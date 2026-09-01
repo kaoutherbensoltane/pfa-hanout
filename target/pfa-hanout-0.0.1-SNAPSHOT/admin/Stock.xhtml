@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form id="f1">
+		<p:commandButton value="+" onclick="PF('dlg').show();">
+		</p:commandButton>
+
+
+
+
+		<p:dataTable id="tab" value="#{stockBean.list}" var="stk">
+
+			<p:column headerText="Article">
+
+				<h:outputText value="#{stk.produit.article}" />
+			</p:column>
+
+
+			<p:column headerText="Mouvement">
+				<h:outputText value="#{stk.mouvement}" />
+			</p:column>
+
+
+			<p:column headerText="Date">
+				<h:outputText value="#{stk.date}" />
+			</p:column>
+
+
+			<p:column headerText="Libellé">
+				<h:outputText value="#{stk.libellé}" />
+			</p:column>
+
+
+
+
+			<p:column headerText="Entrée en Qté">
+				<h:outputText value="#{stk.quantitéE}" />
+			</p:column>
+
+			<p:column headerText="PUE">
+				<h:outputText value="#{stk.PUE}" />
+			</p:column>
+
+
+			<p:column headerText="MontantE">
+				<h:outputText value="#{stk.montantE}" />
+			</p:column>
+
+			<p:column headerText="QS">
+				<h:outputText value="#{stk.quantitéS}" />
+			</p:column>
+
+			<p:column headerText="PUS">
+				<h:outputText value="#{stk.PUS}" />
+			</p:column>
+
+
+			<p:column headerText="MontantS">
+				<h:outputText value="#{stk.montantS}" />
+			</p:column>
+
+
+			<p:column headerText="QSTK">
+				<h:outputText value="#{stk.quantitéStk}" />
+			</p:column>
+
+
+			<p:column headerText="PUSTK">
+				<h:outputText value="#{stk.PUStk}" />
+			</p:column>
+
+
+
+			<p:column headerText="MontantSTK">
+				<h:outputText value="#{stk.montantStk}" />
+			</p:column>
+
+
+
+
+			<p:column headerText="opération" width="20%">
+				<p:commandButton value="supprimer" update="tab"
+					action="#{stockBean.supprimer()}">
+
+
+					<f:setPropertyActionListener value="#{stk}"
+						target="#{stockBean.stock}" />
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+
+				<p:commandButton value="Editer" action="#{stockBean.clickEdit()}"
+					onclick="PF('dlg').show()" update="f1:panel">
+					<f:setPropertyActionListener value="#{stk}"
+						target="#{stockBean.stock}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+		<p:dialog header="Stock" widgetVar="dlg" showEffect="explode"
+			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+
+			<h:panelGrid id="panel" columns="2">
+
+
+				<h:outputText value="Produit" />
+				<p:selectOneMenu value="#{stockBean.stock.produit.article}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{produitBean.list}" var="pdt"
+						itemLabel="#{pdt.article}" itemValue="#{pdt.article}" />
+				</p:selectOneMenu>
+
+
+
+
+
+				<h:outputText value="Mouvement" />
+			<p:selectOneMenu value="#{stockBean.stock.mouvement}">
+				<f:selectItem itemLabel="Stock Initial" itemValue="Stock Initial" />
+				<f:selectItem itemLabel="Entée" itemValue="Entée" />
+				<f:selectItem itemLabel="Sortie" itemValue="Sortie" />
+			</p:selectOneMenu>
+
+
+
+				<h:outputText value="Libélle" />
+				<p:inputText value="#{stockBean.stock.libellé}"></p:inputText>
+
+
+				<h:outputText value="Date" />
+
+				<p:calendar value="#{stockBean.stock.date}" pattern="dd/MM/yyyy"></p:calendar>
+
+
+
+
+				<h:outputText value="QE" />
+				<p:inputText value="#{stockBean.stock.quantitéE}"></p:inputText>
+				<h:outputText value="PUE" />
+				<p:inputText value="#{stockBean.stock.PUE}"></p:inputText>
+				<h:outputText value="MontantE" />
+				<p:inputText value="#{stockBean.stock.montantE}"></p:inputText>
+
+				<h:outputText value="Qs" />
+				<p:inputText value="#{stockBean.stock.quantitéS}"></p:inputText>
+
+				<h:outputText value="PUS" />
+				<p:inputText value="#{stockBean.stock.PUS}"></p:inputText>
+
+				<h:outputText value="MontantS" />
+				<p:inputText value="#{stockBean.stock.montantS}"></p:inputText>
+
+
+				<h:outputText value="QSTK" />
+				<p:inputText value="#{stockBean.stock.quantitéStk}"></p:inputText>
+
+				<h:outputText value="PUStk" />
+				<p:inputText value="#{stockBean.stock.PUStk}"></p:inputText>
+
+				<h:outputText value="MontantSTK" />
+				<p:inputText value="#{stockBean.stock.montantStk}"></p:inputText>
+
+
+
+				<p:commandButton action="#{stockBean.ajouter()}"   update="tab"  value="Ajouter"
+					rendered="#{stockBean.bntAdd}" 
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{stockBean.modifier()}" value="Modifier"
+					rendered="#{stockBean.btnEdit}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{stockBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()"/>
+
+
+
+
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+		
+		
+		
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+
+</body>
+</html>

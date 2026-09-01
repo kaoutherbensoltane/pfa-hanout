@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	
+	<h:form id="f1">
+		<p:commandButton value="+" onclick="PF('dlg').show();">
+		</p:commandButton>
+	
+	
+	
+	
+	<p:dataTable id="tab" value="#{produitBean.list}" var="pdt">
+			<p:column headerText="Article">
+				<h:outputText value="#{pdt.article}" />
+			</p:column>
+
+			<p:column headerText="PA">
+				<h:outputText value="#{pdt.prixAcheté}" />
+			</p:column>
+
+
+			<p:column headerText="Produit Vendu">
+				<h:outputText value="#{pdt.prixVendue}" />
+			</p:column>
+
+
+
+
+
+			
+
+			<p:column headerText="opération" width="20%">
+				<p:commandButton value="supprimer" update="tab"
+				
+					action="#{produitBean.supprimer()}">
+				
+					
+					<f:setPropertyActionListener value="#{pdt}"
+						target="#{produitBean.produit}" />
+						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+				
+				
+				<p:commandButton value="Editer" action="#{produitBean.clickEdit()}" onclick="PF('dlg').show()" update="f1:panel">
+				<f:setPropertyActionListener value="#{pdt}" target="#{produitBean.produit}" />     </p:commandButton>
+			</p:column>
+		</p:dataTable>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<p:dialog header="Produit" widgetVar="dlg"
+			showEffect="explode" hideEffect="bounce" modal="true"
+			resizable="false" draggable="false">
+
+			<h:panelGrid   id="panel"  columns="2">
+				<h:outputText value="Article" />
+				<p:inputText value="#{produitBean.produit.article}"
+					readonly="#{produitBean.btnEdit}"></p:inputText>
+
+				<h:outputText value="Produit Acheté" />
+				<p:inputText value="#{produitBean.produit.prixAcheté}"></p:inputText>
+				<h:outputText value="Produit Vendu" />
+				<p:inputText value="#{produitBean.produit.prixVendue}"></p:inputText>
+
+				
+				<p:commandButton action="#{produitBean.ajouter()}" value="Ajouter"
+					rendered="#{produitBean.bntAdd}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{produitBean.modifier()}"
+					value="Modifier" rendered="#{produitBean.btnEdit}"    update="tab"
+					oncomplete="PF('dlg').hide()" />  
+				<p:commandButton action="#{produitBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()" />
+
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+</body>
+</html>
+

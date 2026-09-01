@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form>
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <h:panelGrid columns="2" cellpadding="5">
+ 
+        <h:outputLabel for="menu" value="Basic:" />
+        <p:selectCheckboxMenu id="menu" value="#{checkboxView.selectedCities}" label="Cities"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+            <f:selectItems value="#{checkboxView.cities}" />
+        </p:selectCheckboxMenu>
+ 
+        <h:outputLabel for="multiple" value="Multiple:" />
+        <p:selectCheckboxMenu id="multiple" value="#{checkboxView.selectedCities2}" label="Cities" multiple="true"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+            <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}" />
+            <f:selectItems value="#{checkboxView.cities}" />
+        </p:selectCheckboxMenu>
+ 
+        <h:outputLabel for="grouped" value="Grouped:" />
+        <p:selectCheckboxMenu id="grouped" value="#{checkboxView.selectedCars}" label="Cars" multiple="true"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+            <f:selectItems value="#{checkboxView.cars}" />
+        </p:selectCheckboxMenu>
+    </h:panelGrid>
+ 
+    <p:commandButton value="Submit" update="displayItems" oncomplete="PF('itemDialog').show()" style="margin-top:10px;" />
+ 
+    <p:dialog header="Selected Items" modal="true" showEffect="fade" hideEffect="fade" widgetVar="itemDialog" width="250">
+        <p:outputPanel id="displayItems">
+            <p:dataList value="#{checkboxView.selectedCities}" var="city" emptyMessage="No cities selected" style="margin-bottom: 10px;">
+                <f:facet name="header">
+                    Basic
+                </f:facet>
+                #{city}
+            </p:dataList>
+ 
+            <p:dataList value="#{checkboxView.selectedCities2}" var="city" emptyMessage="No cities selected" style="margin-bottom: 10px;">
+                <f:facet name="header">
+                    Multiple
+                </f:facet>
+                #{city}
+            </p:dataList>
+ 
+            <p:dataList value="#{checkboxView.selectedCars}" var="car" emptyMessage="No cars selected">
+                <f:facet name="header">
+                    Grouped
+                </f:facet>
+                #{car}
+            </p:dataList>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
+****************************************************************************************
+
+<h:form>
+		<p:commandButton value="Ajouter stock " style="float:right"
+			onclick="PF('dlg').show();">
+		</p:commandButton>
+		<br />
+		<br />
+
+		<p:dialog header="Stock" widgetVar="dlg" modal="true"
+			resizable="false">
+
+			<h:panelGrid columns="2">
+				<h:outputText value="Date" />
+				<p:calendar value="#{stockBean.stock.date}" pattern="dd/MM/yyyy"></p:calendar>
+
+
+				<h:outputText value="Mouvement" />
+				<p:inputText value="#{stockBean.stock.mouvement}"></p:inputText>
+
+
+
+				<h:outputText value="Produit" />
+				<p:selectOneMenu value="#{stockBean.stock.produit.article}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{produitBean.list}" var="pdt"
+						itemLabel="#{pdt.article}" itemValue="#{pdt.article}" />
+
+
+
+
+
+
+				</p:selectOneMenu>
+
+				<h:outputText value="CIN Stock" />
+				<p:inputText value="#{stockBean.stock.cinStock}"></p:inputText>
+
+				<h:outputText value="Entée" />
+				<p:inputText value="#{stockBean.stock.entrée}"></p:inputText>
+
+
+
+				<h:outputText value="Méthode" />
+				<p:inputText value="#{stockBean.stock.méthode}"></p:inputText>
+
+				<h:outputText value="Montant" />
+				<p:inputText value="#{stockBean.stock.montant}"></p:inputText>
+
+
+				<h:outputText value="Prix unitaire" />
+				<p:inputText value="#{stockBean.stock.PU}"></p:inputText>
+
+				<h:outputText value="Quantité" />
+				<p:inputText value="#{stockBean.stock.quantité}"></p:inputText>
+
+				<h:outputText value="Sortie" />
+				<p:inputText value="#{stockBean.stock.sortie}"></p:inputText>
+
+
+				<h:outputText value="Stock initial" />
+				<p:inputText value="#{stockBean.stock.stockInitial}"></p:inputText>
+
+				<h:outputText value="Stock Final" />
+				<p:inputText value="#{stockBean.stock.stockFinal}"></p:inputText>
+
+			</h:panelGrid>
+		</p:dialog>
+
+
+
+
+
+
+
+
+
+
+		<p:dataTable value="#{stockBean.list}" var="stk">
+			<f:facet name="header">
+                       Fiche de stock
+        </f:facet>
+
+			<p:columnGroup type="header">
+				<p:row>
+					<p:column colspan="2" headerText="CIN Stock" />
+					<p:column colspan="4" headerText="Désignation" />
+					<p:column colspan="5" headerText="Méthode" />
+
+				</p:row>
+
+
+
+				<p:row>
+					<p:column rowspan="2" headerText="Date" />
+					<p:column rowspan="2" headerText="Mouvement" />
+					<p:column colspan="3" headerText="Entrées" />
+					<p:column colspan="3" headerText="Sorties" />
+					<p:column colspan="3" headerText="Stocks" />
+				</p:row>
+				<p:row>
+					<p:column headerText="Quantité_e" />
+					<h:outputText value="#{stk.quantitéE}" />
+					<p:column headerText="P.U_e" />
+					<h:outputText value="#{stk.PUE}" />
+					<p:column headerText="Montant_e" />
+					<h:outputText value="#{stk.montantE}" />
+
+					<p:column headerText="Quantité_s" />
+					<h:outputText value="#{stk.quantitéS}" />
+					<p:column headerText="P.U_s" />
+					<h:outputText value="#{stk.PUS}" />
+					<p:column headerText="Montant_s" />
+					<h:outputText value="#{stk.montantS}" />
+
+
+					<p:column headerText="Quantité_stk" />
+					<h:outputText value="#{stk.quantitéStk}" />
+					<p:column headerText="P.U_stk" />
+					<h:outputText value="#{stk.PUStk}" />
+					<p:column headerText="Montant_stk" />
+					<h:outputText value="#{stk.montantStk}" />
+				</p:row>
+			</p:columnGroup>
+			<p:column>
+
+				<h:outputText value="#{stk.date}" />
+			</p:column>
+
+			<p:column>
+
+				<h:outputText value="#{stk.mouvement}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{stk.quantité}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{stk.PU}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{stk.montant}">
+
+				</h:outputText>
+			</p:column>
+			<p:column>
+				<h:outputText value="#{sale.thisYearSale}">
+					<f:convertNumber type="currency" currencySymbol="$" />
+				</h:outputText>
+			</p:column>
+
+			<p:columnGroup type="footer">
+				<p:row>
+					<p:column colspan="8" style="text-align:right" footerText="Totals:" />
+					<p:column footerText="\$#{dtGroupView.lastYearTotal}" />
+
+					<p:column footerText="\$#{dtGroupView.thisYearTotal}" />
+				</p:row>
+			</p:columnGroup>
+
+
+		</p:dataTable>
+
+	</h:form>
+
+
+
+
+</body> 
+</html>

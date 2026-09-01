@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<h:form id="f1">
+		<p:commandButton value="+"   actionListener="#{clientBean.preparerAjout}"
+                 update="f1:panel" onclick="PF('dlg').show();">
+		</p:commandButton>
+
+
+
+
+		<p:dataTable id="tab" value="#{clientBean.list}" var="clt">
+			<p:column headerText="CIN">
+				<h:outputText value="#{clt.cinClt}" />
+			</p:column>
+
+			<p:column headerText="Nom">
+				<h:outputText value="#{clt.nomClt}" />
+			</p:column>
+
+
+			<p:column headerText="Prenom">
+				<h:outputText value="#{clt.prenomClt}" />
+			</p:column>
+
+
+
+			<p:column headerText="Adresse">
+				<h:outputText value="#{clt.adresseClt}" />
+			</p:column>
+
+
+			<p:column headerText="Email">
+				<h:outputText value="#{clt.mailClt}" />
+			</p:column>
+			
+			
+			<p:column headerText="Ville">
+				<h:outputText value="#{clt.villeClt}" />
+			</p:column>
+			
+			<p:column headerText="Article">
+			
+				<h:outputText value="#{clt.produit.article}" />
+			</p:column>
+			
+			<p:column headerText="Total crédits">
+				<h:outputText value="#{clt.totalCredits}" />
+			</p:column>
+			
+			<p:column headerText="Date">
+				<h:outputText value="#{clt.date}" />
+			</p:column>
+
+						<p:column headerText="opération" width="20%">
+							<p:commandButton value="supprimer" update="tab"
+							
+								action="#{clientBean.supprimer()}">
+							
+								
+								<f:setPropertyActionListener value="#{clt}"
+									target="#{clientBean.client}" />
+									<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
+							
+							
+							<p:commandButton value="Editer" action="#{clientBean.clickEdit()}" onclick="PF('dlg').show()" update="f1:panel">
+							<f:setPropertyActionListener value="#{clt}" target="#{clientBean.client}" />     </p:commandButton>
+						</p:column>
+		</p:dataTable>
+
+
+		<p:dialog header="Client" widgetVar="dlg"
+			showEffect="explode" hideEffect="bounce" modal="true"
+			resizable="false" resetValues="true" >
+
+			<h:panelGrid   id="panel"  columns="2">
+				<h:outputText value="CIN" />
+				<p:inputText value="#{clientBean.client.cinClt}"
+					readonly="#{clientBean.btnEdit}"></p:inputText>
+
+				<h:outputText value="NOM" />
+				<p:inputText value="#{clientBean.client.nomClt}"></p:inputText>
+				<h:outputText value="Prénom" />
+				<p:inputText value="#{clientBean.client.prenomClt}"></p:inputText>
+
+				<h:outputText value="EMAIL" />
+				<p:inputText value="#{clientBean.client.mailClt}"></p:inputText>
+
+
+				<h:outputText value="Produit" />
+				<p:selectOneMenu value="#{clientBean.client.produit.article}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{produitBean.list}" var="pdt"
+						itemLabel="#{pdt.article}" itemValue="#{pdt.article}" />
+				</p:selectOneMenu>
+				
+				
+				<h:outputText value="Ville client" />
+				<p:inputText value="#{clientBean.client.villeClt}"></p:inputText>
+				
+				
+				<h:outputText value="Total Crédits" />
+				<p:inputText value="#{clientBean.client.totalCredits}"></p:inputText>
+				
+				<h:outputText value="Adresse" />
+				<p:inputText value="#{clientBean.client.adresseClt}"></p:inputText>
+				
+				
+				<h:outputText value="Date" />
+				
+				<p:calendar value="#{clientBean.client.date}"  pattern="dd/MM/yyyy"></p:calendar> 
+				
+				
+			
+				
+				<p:commandButton action="#{clientBean.ajouter()}" value="Ajouter"
+					rendered="#{clientBean.bntAdd}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{clientBean.modifier()}"
+					value="Modifier" rendered="#{clientBean.btnEdit}"    update="tab"
+					oncomplete="PF('dlg').hide()" />  
+				<p:commandButton action="#{clientBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()"/>
+
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+
+
+
+
+
+
+</body> 
+</html>

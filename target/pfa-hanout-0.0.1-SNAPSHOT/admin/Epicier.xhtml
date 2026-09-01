@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form id="f1">
+		<p:commandButton value="+" onclick="PF('dlg').show();">
+		</p:commandButton>
+
+
+
+
+		<p:dataTable id="tab" value="#{epicierBean.list}" var="epr">
+
+			<p:column headerText="cin_epicier">
+
+				<h:outputText value="#{epr.cinEpicier}" />
+			</p:column>
+
+
+			<p:column headerText="nom_epicier">
+				<h:outputText value="#{epr.nomEpicier}" />
+			</p:column>
+
+
+			<p:column headerText="prenom_epicier">
+				<h:outputText value="#{epr.prenomEpicier}" />
+			</p:column>
+
+
+			<p:column headerText="adresse_epicier">
+				<h:outputText value="#{epr.adresseEpicier}" />
+			</p:column>
+
+
+
+
+			<p:column headerText=" mail_epicier">
+				<h:outputText value="#{epr.mailEpicier}" />
+			</p:column>
+
+			<p:column headerText="ville_epicier">
+				<h:outputText value="#{epr.villeEpicier}" />
+			</p:column>
+
+
+			<p:column headerText=" cin_cmd">
+				<h:outputText value="#{epr.commande.cinCmd}" />
+			</p:column>
+
+
+
+			<p:column headerText="opération" width="20%">
+				<p:commandButton value="supprimer" update="tab"
+					action="#{epicierBean.supprimer()}">
+
+
+					<f:setPropertyActionListener value="#{epr}"
+						target="#{epicierBean.epicier}" />
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+
+				<p:commandButton value="Editer" action="#{epicierBean.clickEdit()}"
+					onclick="PF('dlg').show()" update="f1:panel">
+					<f:setPropertyActionListener value="#{epr}"
+						target="#{epicierBean.epicier}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+		<p:dialog header="Epicier" widgetVar="dlg" showEffect="explode"
+			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+
+			<h:panelGrid id="panel" columns="2">
+
+
+				<h:outputText value="cin_epicier" />
+				<p:inputText value="#{epicierBean.epicier.cinEpicier}"></p:inputText>
+
+				<h:outputText value="nom_epicier" />
+				<p:inputText value="#{epicierBean.epicier.nomEpicier}"></p:inputText>
+
+				<h:outputText value="prenom_epicier" />
+				<p:inputText value="#{epicierBean.epicier.prenomEpicier}"></p:inputText>
+
+
+				<h:outputText value="adresse_epicier" />
+				<p:inputText value="#{epicierBean.epicier.adresseEpicier}"></p:inputText>
+
+
+				<h:outputText value="mail_epicier" />
+				<p:inputText value="#{epicierBean.epicier.mailEpicier}"></p:inputText>
+
+
+				<h:outputText value="ville_epicier" />
+				<p:inputText value="#{epicierBean.epicier.villeEpicier}"></p:inputText>
+
+
+
+		
+				
+
+
+
+				<h:outputText value="cin_cmd" />
+				<p:selectOneMenu value="#{epicierBean.epicier.commande.cinCmd}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{commandeBean.list}" var="epr"
+						itemLabel="#{epr.cinCmd}" itemValue="#{epr.cinCmd}" />
+				</p:selectOneMenu>
+
+
+				<p:commandButton action="#{epicierBean.ajouter()}" value="Ajouter"
+					rendered="#{epicierBean.bntAdd}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{epicierBean.modifier()}" value="Modifier"
+					rendered="#{epicierBean.btnEdit}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{epicierBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()"/>
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+
+
+
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+</body>
+</html>

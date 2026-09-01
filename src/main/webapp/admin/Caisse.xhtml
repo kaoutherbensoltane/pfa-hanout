@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form id="f1">
+		<p:commandButton value="+" onclick="PF('dlg').show();"  actionListener="#{caisseBean.preparerAjout}"
+                 update="f1:panel">
+		</p:commandButton>
+
+
+
+
+		<p:dataTable id="tab" value="#{caisseBean.list}" var="css">
+
+			<p:column headerText="Article">
+
+				<h:outputText value="#{css.produit.article}" />
+			</p:column>
+
+
+			<p:column headerText="cin_caisse">
+				<h:outputText value="#{css.cinCaisse}" />
+			</p:column>
+
+
+			<p:column headerText="entrée_en_dinars">
+				<h:outputText value="#{css.entréeEnDinars}" />
+			</p:column>
+
+
+			<p:column headerText="sortie_en_dinars">
+				<h:outputText value="#{css.sortieEnDinars}" />
+			</p:column>
+
+
+
+
+			<p:column headerText="date">
+				<h:outputText value="#{css.date}" />
+			</p:column>
+
+			<p:column headerText="gain">
+				<h:outputText value="#{css.gain}" />
+			</p:column>
+
+
+			<p:column headerText="total_entées">
+				<h:outputText value="#{css.totalEntées}" />
+			</p:column>
+
+			<p:column headerText="total_sortie">
+				<h:outputText value="#{css.totalSortie}" />
+			</p:column>
+
+			<p:column headerText="gain_total">
+				<h:outputText value="#{css.gainTotal}" />
+			</p:column>
+
+
+			<p:column headerText="opération" width="20%">
+				<p:commandButton value="supprimer" update="tab"
+					action="#{caisseBean.supprimer()}">
+
+
+					<f:setPropertyActionListener value="#{css}"
+						target="#{caisseBean.caisse}" />
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+
+
+				<p:commandButton value="Editer" action="#{caisseBean.clickEdit()}"
+					onclick="PF('dlg').show()" update="f1:panel">
+					<f:setPropertyActionListener value="#{css}"
+						target="#{caisseBean.caisse}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+		<p:dialog header="Caisse" widgetVar="dlg" showEffect="explode"
+			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+
+			<h:panelGrid id="panel" columns="2">
+
+
+				<h:outputText value="Produit" />
+				<p:selectOneMenu value="#{caisseBean.caisse.produit.article}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{produitBean.list}" var="css"
+						itemLabel="#{css.article}" itemValue="#{css.article}" />
+				</p:selectOneMenu>
+
+
+
+
+
+
+
+
+				<h:outputText value="cin_caisse" />
+				<p:inputText value="#{caisseBean.caisse.cinCaisse}"></p:inputText>
+
+
+				<h:outputText value="Entrée_en_dinars" />
+				<p:inputText value="#{caisseBean.caisse.entréeEnDinars}"></p:inputText>
+
+				<h:outputText value="sortie_en_dinars" />
+				<p:inputText value="#{caisseBean.caisse.sortieEnDinars}"></p:inputText>
+
+
+				<h:outputText value="Date" />
+
+				<p:calendar value="#{caisseBean.caisse.date}" pattern="dd/MM/yyyy"></p:calendar>
+
+
+
+
+				<h:outputText value="gain" />
+				<p:inputText value="#{caisseBean.caisse.gain}"></p:inputText>
+
+				<h:outputText value="total_entées" />
+				<p:inputText value="#{caisseBean.caisse.totalEntées}"></p:inputText>
+				<h:outputText value="total_sortie" />
+				<p:inputText value="#{caisseBean.caisse.totalSortie}"></p:inputText>
+
+				<h:outputText value="gain_total" />
+				<p:inputText value="#{caisseBean.caisse.gainTotal}"></p:inputText>
+
+
+
+				<p:commandButton action="#{caisseBean.ajouter()}" value="Ajouter"
+					rendered="#{caisseBean.bntAdd}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{caisseBean.modifier()}" value="Modifier"
+					rendered="#{caisseBean.btnEdit}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{caisseBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()" />
+
+
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+
+
+
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+</body>
+</html>

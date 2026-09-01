@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<bean   id="caisDao" class="com.dao.impl.CaisseDaoImpl"></bean>
+<bean  id="caisServ" class="com.services.impl.CaisseServiceImpl">
+<property name="caisseDao" ref="caisDao"></property>
+</bean>
+
+<bean   id="ctDao" class="com.dao.impl.ClientDaoImpl"></bean>
+<bean  id="cltServ" class="com.services.impl.ClientServiceImpl">
+<property name="cltDao" ref="ctDao"></property>
+</bean>
+
+<bean   id="cmdDao" class="com.dao.impl.CommandeDaoImpl"></bean>
+<bean  id="cmdServ" class="com.services.impl.CommandeServiceImpl">
+<property name="commandeDao" ref="cmdDao"></property>
+</bean>
+
+<bean   id="eprDao" class="com.dao.impl.EpicierDaoImpl"></bean>
+<bean  id="eprServ" class="com.services.impl.EpicierServiceImpl">
+<property name="epicierDao" ref="eprDao"></property>
+</bean>
+
+
+<bean   id="fctrDao" class="com.dao.impl.FactureDaoImlp"></bean>
+<bean  id="fctrServ" class="com.services.impl.FactureServiceImpl">
+<property name="factureDao" ref="fctrDao"></property>
+</bean>
+
+<bean   id="fsrDao" class="com.dao.impl.FournisseurDaoImpl"></bean>
+<bean  id="fsrServ" class="com.services.impl.FournisseurServiceImpl">
+<property name="fournisseurDao" ref="fsrDao"></property>
+</bean>
+
+<bean   id="pdtDao" class="com.dao.impl.ProduitDaoImpl"></bean>
+<bean  id="pdtServ" class="com.services.impl.ProduitServiceImpl">
+<property name="produitDao" ref="pdtDao"></property>
+</bean>
+
+<bean   id="stkDao" class="com.dao.impl.StockDaoImpl"></bean>
+<bean  id="stkServ" class="com.services.impl.StockServiceImpl">
+<property name="stockDao" ref="stkDao"></property>
+</bean>
+
+
+</beans>

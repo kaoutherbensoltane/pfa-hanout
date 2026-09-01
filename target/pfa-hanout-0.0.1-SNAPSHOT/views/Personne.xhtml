@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+<h:panelGrid   columns="2">
+<h:outputText value="CIN" />
+<h:inputText value="#{personneBean.personne.cin}" />
+
+<h:outputText value="Nom" />
+<h:inputText value="#{personneBean.personne.nom}" />
+
+<h:outputText value="Prénom" />
+<h:inputText value="#{personneBean.personne.prenom}" />
+
+<h:outputText value="Adresse" />
+<h:inputText value="#{personneBean.personne.adresse}" />
+
+<h:outputText value="Email" />
+<h:inputText value="#{personneBean.personne.email}" />  
+<h:commandButton action="#{personneBean.Ajouter()}" value="Ajouter" /> 
+</h:panelGrid>
+</h:form>
+</body> 
+</html>
+
+
+
+

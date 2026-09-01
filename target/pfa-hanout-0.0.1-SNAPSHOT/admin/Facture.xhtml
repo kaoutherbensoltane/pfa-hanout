@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<h:form id="f1">
+		<p:commandButton value="+" onclick="PF('dlg').show();">
+		</p:commandButton>
+
+
+
+
+		<p:dataTable id="tab" value="#{factureBean.list}" var="ftr">
+			<p:column headerText="Code">
+				<h:outputText value="#{ftr.code}" />
+			</p:column>
+			
+			
+
+			<p:column headerText="Quantité">
+				<h:outputText value="#{ftr.quantité}" />
+			</p:column>
+
+
+			<p:column headerText="Prix unitaire">
+				<h:outputText value="#{ftr.prixUnitaire}" />
+			</p:column>
+
+
+
+			<p:column headerText="Prix Total">
+				<h:outputText value="#{ftr.prixTotal}" />
+			</p:column>
+
+
+			<p:column headerText="total">
+				<h:outputText value="#{ftr.total}" />
+			</p:column>
+			
+			<p:column headerText="Nom entreprise">
+				<h:outputText value="#{ftr.nomEntreprise}" />
+			</p:column>
+			
+			<p:column headerText="Adresse Ese">
+				<h:outputText value="#{ftr.adresseEntreprise}" />
+			</p:column>
+			
+			<p:column headerText="Num Ese">
+				<h:outputText value="#{ftr.numEntreprise}" />
+			</p:column>
+			
+			<p:column headerText="Date">
+				<h:outputText value="#{ftr.date}" />
+			</p:column>
+			
+			
+			<p:column headerText="Reçu">
+				<h:outputText value="#{ftr.rendu}" />
+			</p:column>
+			
+			<p:column headerText="rendu">
+				<h:outputText value="#{ftr.rendu}" />
+			</p:column>
+			
+			<p:column headerText="Reste">
+				<h:outputText value="#{ftr.reste}" />
+			</p:column>
+			
+			
+			
+			<p:column headerText="Article">
+				<h:outputText value="#{ftr.produit.article}" />
+			</p:column>
+			
+			<p:column headerText="Cas">
+				<h:outputText value="#{ftr.cas}" />
+			</p:column>
+
+			<p:column headerText="opération" width="20%">
+				<p:commandButton value="supprimer" update="tab"
+				
+					action="#{factureBean.supprimer()}">
+				
+					
+					<f:setPropertyActionListener value="#{ftr}"
+						target="#{factureBean.facture}" />
+						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+				
+				
+				<p:commandButton value="Editer" action="#{factureBean.clickEdit()}" onclick="PF('dlg').show()" update="f1:panel">
+				<f:setPropertyActionListener value="#{ftr}" target="#{factureBean.facture}"/>     </p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+
+		<p:dialog header="Ftr" widgetVar="dlg"
+			showEffect="explode" hideEffect="bounce" modal="true"
+			resizable="false" >
+
+			<h:panelGrid   id="panel"  columns="2">
+				<h:outputText value="Code" />
+				<p:inputText value="#{factureBean.facture.code}"
+					readonly="#{factureBean.btnEdit}"></p:inputText>
+
+				<h:outputText value="Quantité" />
+				<p:inputText value="#{factureBean.facture.quantité}"></p:inputText>
+				
+				<h:outputText value="Cas" />
+				<p:inputText value="#{factureBean.facture.cas}"></p:inputText>
+				<h:outputText value="Prix unitaire" />
+				<p:inputText value="#{factureBean.facture.prixUnitaire}"></p:inputText>
+
+				<h:outputText value="Prix Total" />
+				<p:inputText value="#{factureBean.facture.prixTotal}"></p:inputText>
+
+
+				<h:outputText value="Total" />
+				<p:inputText value="#{factureBean.facture.total}"></p:inputText>
+				
+				<h:outputText value="Nom_entreprise" />
+				<p:inputText value="#{factureBean.facture.nomEntreprise}"></p:inputText>
+				
+				<h:outputText value="adresse" />
+				<p:inputText value="#{factureBean.facture.adresseEntreprise}"></p:inputText>
+				
+				<h:outputText value="Num Ese" />
+				<p:inputText value="#{factureBean.facture.numEntreprise}"></p:inputText>
+				
+				<h:outputText value="date " />
+				
+				<p:calendar value="#{factureBean.facture.date}" pattern="dd/MM/yyyy"></p:calendar>
+				
+				
+				<h:outputText value="reçu" />
+				<p:inputText value="#{factureBean.facture.reçu}"></p:inputText>
+				
+				<h:outputText value="rendu" />
+				<p:inputText value="#{factureBean.facture.rendu}"></p:inputText>
+				
+				<h:outputText value="reste" />
+				<p:inputText value="#{factureBean.facture.reste}"></p:inputText>
+				
+				<h:outputText value="Total" />
+				<p:inputText value="#{factureBean.facture.total}"></p:inputText>
+				
+				
+				<h:outputText value="Produit" />
+				<p:selectOneMenu value="#{factureBean.facture.produit.article}"
+					filter="true" filterMatchMode="contains">
+
+					<f:selectItems value="#{produitBean.list}" var="pdt"
+						itemLabel="#{pdt.article}" itemValue="#{pdt.article}" />
+				</p:selectOneMenu>
+
+
+
+				<p:commandButton action="#{factureBean.ajouter()}" value="Ajouter"
+					rendered="#{factureBean.bntAdd}" update="tab"
+					oncomplete="PF('dlg').hide()" />
+				<p:commandButton action="#{factureBean.modifier()}"
+					value="Modifier" rendered="#{factureBean.btnEdit}"    update="tab"
+					oncomplete="PF('dlg').hide()" />  
+				<p:commandButton action="#{factureBean.annuler()}" value="Annuler"  update="f1:panel"
+                 oncomplete="PF('dlg').hide()"/>
+
+			</h:panelGrid>
+
+
+
+		</p:dialog>
+		<p:growl id="growl" showDetail="true" life="5000">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+		</p:confirmDialog>
+	</h:form>
+
+
+
+
+
+
+
+
+
+
+</body> 
+</html>
