@@ -6,6 +6,15 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
+
+
+
+
+
+<ui:composition template="../facelets/template.xhtml">
+
+<ui:define name="content">
+
 <body>
 	
 	<h:form id="f1">
@@ -63,7 +72,7 @@
 		
 		
 		<p:dialog header="Produit" widgetVar="dlg"
-			showEffect="explode" hideEffect="bounce" modal="true"
+			showEffect="explode" hideEffect="bounce" modal="false"
 			resizable="false" draggable="false">
 
 			<h:panelGrid   id="panel"  columns="2">
@@ -104,5 +113,11 @@
 		</p:confirmDialog>
 	</h:form>
 </body>
+
+
+
+
+</ui:define>
+</ui:composition>
 </html>
 

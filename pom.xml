@@ -5,6 +5,28 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
+  
+    <repositories>
+  
+  
+  
+  <repository>
+    <id>prime-repo</id>
+    <name>PrimeFaces Maven Repository</name>
+    <url>https://repository.primefaces.org</url>
+    <layout>default</layout>
+  </repository>
+
+
+  
+  
+  </repositories>
+  
+  
+  
+
+  
+  
   <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -71,6 +93,13 @@
 </dependency>
 	
 	
+	<dependency>
+    <groupId>org.primefaces.themes</groupId>
+    <artifactId>all-themes</artifactId>
+    <version>1.0.10</version>
+</dependency>
+	
+	
 	
 	
 	<dependency>
@@ -104,12 +133,7 @@
     <version>2.2.20</version>
 </dependency>
 
-<dependency>
-    <groupId>javax.faces</groupId>
-    <artifactId>javax.faces-api</artifactId>
-    <version>2.3</version>
-    <scope>provided</scope>
-</dependency>
+
 
 <dependency>
 	<groupId>commons-logging</groupId>

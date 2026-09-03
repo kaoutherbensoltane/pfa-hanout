@@ -6,6 +6,14 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
+
+
+
+
+<ui:composition template="../facelets/template.xhtml">
+
+<ui:define name="content">
+
 <body>
 	<h:form id="f1">
 		<p:commandButton value="+" onclick="PF('dlg').show();">
@@ -115,7 +123,7 @@
 
 
 		<p:dialog header="Stock" widgetVar="dlg" showEffect="explode"
-			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+			hideEffect="bounce" modal="false" resizable="false" draggable="false">
 
 			<h:panelGrid id="panel" columns="2">
 
@@ -214,4 +222,9 @@
 	</h:form>
 
 </body>
+
+
+
+</ui:define>
+</ui:composition>
 </html>
