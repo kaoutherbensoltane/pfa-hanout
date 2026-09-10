@@ -120,7 +120,7 @@
 
 
 		<p:dialog header="Stock" widgetVar="dlg" showEffect="explode"
-			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+			hideEffect="bounce" modal="false" resizable="false" draggable="false">
 
 			<h:panelGrid id="panel" columns="2">
 
@@ -190,7 +190,7 @@
 				<p:commandButton action="#{stockBean.modifier()}" value="Modifier"
 					rendered="#{stockBean.btnEdit}" update="tab"
 					oncomplete="PF('dlg').hide()" />
-				<p:commandButton action="#{stockBean.annuler()}" value="Annuler" />
+				<p:commandButton action="#{stockBean.annuler()}" value="Annuler"  update="f1:panel" />
 
 
 

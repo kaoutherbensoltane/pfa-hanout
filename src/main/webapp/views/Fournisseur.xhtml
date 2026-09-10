@@ -62,7 +62,7 @@
 
 
 		<p:dialog header="Fournisseur" widgetVar="dlg"
-			showEffect="explode" hideEffect="bounce" modal="true"
+			showEffect="explode" hideEffect="bounce" modal="false"
 			resizable="false" >
 
 			<h:panelGrid   id="panel"  columns="2">
@@ -87,7 +87,7 @@
 				<p:commandButton action="#{fournisseurBean.modifier()}"
 					value="Modifier" rendered="#{fournisseurBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{fournisseurBean.annuler()}" value="Annuler"/>
+				<p:commandButton action="#{fournisseurBean.annuler()}" value="Annuler"  update="f1:panel"/>
 
 			</h:panelGrid>
 

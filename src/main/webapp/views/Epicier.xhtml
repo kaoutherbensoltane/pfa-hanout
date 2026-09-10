@@ -89,7 +89,7 @@
 
 
 		<p:dialog header="Epicier" widgetVar="dlg" showEffect="explode"
-			hideEffect="bounce" modal="true" resizable="false" draggable="false">
+			hideEffect="bounce" modal="false" resizable="false" draggable="false">
 
 			<h:panelGrid id="panel" columns="2">
 
@@ -137,7 +137,7 @@
 				<p:commandButton action="#{epicierBean.modifier()}" value="Modifier"
 					rendered="#{epicierBean.btnEdit}" update="tab"
 					oncomplete="PF('dlg').hide()" />
-				<p:commandButton action="#{epicierBean.annuler()}" value="Annuler" />
+				<p:commandButton action="#{epicierBean.annuler()}" value="Annuler"  update="f1:panel"/>
 			</h:panelGrid>
 
 

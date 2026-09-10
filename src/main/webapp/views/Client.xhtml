@@ -82,7 +82,7 @@
 
 
 		<p:dialog header="Client" widgetVar="dlg"
-			showEffect="explode" hideEffect="bounce" modal="true"
+			showEffect="explode" hideEffect="bounce" modal="false"
 			resizable="false" >
 
 			<h:panelGrid   id="panel"  columns="2">
@@ -132,7 +132,7 @@
 				<p:commandButton action="#{clientBean.modifier()}"
 					value="Modifier" rendered="#{clientBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{clientBean.annuler()}" value="Annuler"/>
+				<p:commandButton action="#{clientBean.annuler()}" value="Annuler"   update="f1:panel"/>
 
 			</h:panelGrid>
 

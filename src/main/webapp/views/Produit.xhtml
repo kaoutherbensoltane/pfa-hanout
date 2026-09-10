@@ -68,7 +68,7 @@
 		
 		
 		<p:dialog header="Produit" widgetVar="dlg"
-			showEffect="explode" hideEffect="bounce" modal="true"
+			showEffect="explode" hideEffect="bounce" modal="false"
 			resizable="false" draggable="false">
 
 			<h:panelGrid   id="panel"  columns="2">
@@ -88,7 +88,7 @@
 				<p:commandButton action="#{produitBean.modifier()}"
 					value="Modifier" rendered="#{produitBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{produitBean.annuler()}" value="Annuler"      />
+				<p:commandButton action="#{produitBean.annuler()}" value="Annuler"     update="f1:panel"  />
 
 			</h:panelGrid>
 

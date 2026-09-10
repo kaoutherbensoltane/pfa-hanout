@@ -104,7 +104,7 @@
 
 
 		<p:dialog header="Ftr" widgetVar="dlg"
-			showEffect="explode" hideEffect="bounce" modal="true"
+			showEffect="explode" hideEffect="bounce" modal="false"
 			resizable="false" >
 
 			<h:panelGrid   id="panel"  columns="2">
@@ -170,7 +170,7 @@
 				<p:commandButton action="#{factureBean.modifier()}"
 					value="Modifier" rendered="#{factureBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{factureBean.annuler()}" value="Annuler"/>
+				<p:commandButton action="#{factureBean.annuler()}" value="Annuler"  update="f1:panel"/>
 
 			</h:panelGrid>
 
