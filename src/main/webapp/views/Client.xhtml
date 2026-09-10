@@ -132,7 +132,7 @@
 				<p:commandButton action="#{clientBean.modifier()}"
 					value="Modifier" rendered="#{clientBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{clientBean.annuler()}" value="Annuler"   update="f1:panel"/>
+				<p:commandButton action="#{clientBean.annuler()}" value="Annuler"   update="f1:panel"  oncomplete="PF('dlg').hide()"/>
 
 			</h:panelGrid>
 

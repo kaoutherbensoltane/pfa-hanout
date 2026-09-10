@@ -156,7 +156,7 @@
 				<p:commandButton action="#{caisseBean.modifier()}" value="Modifier"
 					rendered="#{caisseBean.btnEdit}" update="tab"
 					oncomplete="PF('dlg').hide()" />
-				<p:commandButton action="#{caisseBean.annuler()}" value="Annuler"  update="f1:panel"/>
+				<p:commandButton action="#{caisseBean.annuler()}" value="Annuler"  update="f1:panel"   oncomplete="PF('dlg').hide()"/>
 
 				
 

@@ -190,7 +190,7 @@
 				<p:commandButton action="#{stockBean.modifier()}" value="Modifier"
 					rendered="#{stockBean.btnEdit}" update="tab"
 					oncomplete="PF('dlg').hide()" />
-				<p:commandButton action="#{stockBean.annuler()}" value="Annuler"  update="f1:panel" />
+				<p:commandButton action="#{stockBean.annuler()}" value="Annuler"  update="f1:panel"  oncomplete="PF('dlg').hide()"/>
 
 
 

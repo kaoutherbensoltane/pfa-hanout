@@ -170,7 +170,7 @@
 				<p:commandButton action="#{factureBean.modifier()}"
 					value="Modifier" rendered="#{factureBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{factureBean.annuler()}" value="Annuler"  update="f1:panel"/>
+				<p:commandButton action="#{factureBean.annuler()}" value="Annuler"  update="f1:panel"  oncomplete="PF('dlg').hide()"/>
 
 			</h:panelGrid>
 

@@ -137,7 +137,7 @@
 				<p:commandButton action="#{epicierBean.modifier()}" value="Modifier"
 					rendered="#{epicierBean.btnEdit}" update="tab"
 					oncomplete="PF('dlg').hide()" />
-				<p:commandButton action="#{epicierBean.annuler()}" value="Annuler"  update="f1:panel"/>
+				<p:commandButton action="#{epicierBean.annuler()}" value="Annuler"  update="f1:panel"  oncomplete="PF('dlg').hide()"/>
 			</h:panelGrid>
 
 

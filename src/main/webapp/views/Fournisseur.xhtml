@@ -87,7 +87,7 @@
 				<p:commandButton action="#{fournisseurBean.modifier()}"
 					value="Modifier" rendered="#{fournisseurBean.btnEdit}"    update="tab"
 					oncomplete="PF('dlg').hide()" />  
-				<p:commandButton action="#{fournisseurBean.annuler()}" value="Annuler"  update="f1:panel"/>
+				<p:commandButton action="#{fournisseurBean.annuler()}" value="Annuler"  update="f1:panel"  oncomplete="PF('dlg').hide()"/>
 
 			</h:panelGrid>
 
