@@ -6,6 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
+
+
+<ui:composition template="../facelets/template.xhtml">
+
+<ui:define name="content">
 <body>
 	<h:form id="f1">
 		<p:commandButton value="+" onclick="PF('dlg').show();">
@@ -212,4 +217,9 @@
 	</h:form>
 
 </body>
+
+
+
+</ui:define>
+</ui:composition> 
 </html>

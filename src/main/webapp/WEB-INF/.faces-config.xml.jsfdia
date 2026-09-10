@@ -1,2 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="120,146,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Caisse::#views#Caisse.xhtml" NAME="output"
+    PATH="/views/Caisse.xhtml" TARGET="rules:#views#Caisse.xhtml"
+    TITLE="Caisse" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Client::#views#Client.xhtml" NAME="output1"
+    PATH="/views/Client.xhtml" TARGET="rules:#views#Client.xhtml"
+    TITLE="Client" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Commande::#views#Commande.xhtml"
+    NAME="output2" PATH="/views/Commande.xhtml"
+    TARGET="rules:#views#Commande.xhtml" TITLE="Commande" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Epicier::#views#Epicier.xhtml"
+    NAME="output3" PATH="/views/Epicier.xhtml"
+    TARGET="rules:#views#Epicier.xhtml" TITLE="Epicier" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Facture::#views#Facture.xhtml"
+    NAME="output4" PATH="/views/Facture.xhtml"
+    TARGET="rules:#views#Facture.xhtml" TITLE="Facture" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Fournisseur::#views#Fournisseur.xhtml"
+    NAME="output5" PATH="/views/Fournisseur.xhtml"
+    TARGET="rules:#views#Fournisseur.xhtml" TITLE="Fournisseur" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Produit::#views#Produit.xhtml"
+    NAME="output6" PATH="/views/Produit.xhtml"
+    TARGET="rules:#views#Produit.xhtml" TITLE="Produit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Stock::#views#Stock.xhtml" NAME="output7"
+    PATH="/views/Stock.xhtml" TARGET="rules:#views#Stock.xhtml"
+    TITLE="Stock" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#views#Caisse.xhtml"
+  PATH="/views/Caisse.xhtml" SHAPE="368,152,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Client.xhtml"
+  PATH="/views/Client.xhtml" SHAPE="390,225,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Commande.xhtml"
+  PATH="/views/Commande.xhtml" SHAPE="395,290,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Epicier.xhtml"
+  PATH="/views/Epicier.xhtml" SHAPE="394,334,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Facture.xhtml"
+  PATH="/views/Facture.xhtml" SHAPE="410,372,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Fournisseur.xhtml"
+  PATH="/views/Fournisseur.xhtml" SHAPE="421,405,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Produit.xhtml"
+  PATH="/views/Produit.xhtml" SHAPE="351,428,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#views#Stock.xhtml" PATH="/views/Stock.xhtml"
+  SHAPE="114,360,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

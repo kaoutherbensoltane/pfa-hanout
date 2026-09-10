@@ -6,6 +6,11 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 <h:head></h:head> 
+
+
+<ui:composition template="../facelets/template.xhtml">
+
+<ui:define name="content">
 <body> 
 <h:form id="f1">
 		<p:commandButton value="+" onclick="PF('dlg').show();">
@@ -137,7 +142,7 @@
 				
 				
 				<h:outputText value="reçu" />
-				<p:inputText value="#{factureBean.facture.reçu}"></p:inputText>
+				<p:inputText value="#{factureBean.facture.recu}"></p:inputText>
 				
 				<h:outputText value="rendu" />
 				<p:inputText value="#{factureBean.facture.rendu}"></p:inputText>
@@ -195,4 +200,8 @@
 
 
 </body> 
+
+
+</ui:define>
+</ui:composition> 
 </html>

@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-
-  <application> 
-  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>  
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>Caisse</from-outcome>
+   <to-view-id>/views/Caisse.xhtml</to-view-id>
+   <redirect></redirect>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Client</from-outcome>
+   <to-view-id>/views/Client.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Commande</from-outcome>
+   <to-view-id>/views/Commande.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Epicier</from-outcome>
+   <to-view-id>/views/Epicier.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Facture</from-outcome>
+   <to-view-id>/views/Facture.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Fournisseur</from-outcome>
+   <to-view-id>/views/Fournisseur.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Produit</from-outcome>
+   <to-view-id>/views/Produit.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>Stock</from-outcome>
+   <to-view-id>/views/Stock.xhtml</to-view-id>
+      <redirect></redirect>
+   
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
  </application>
 </faces-config>
